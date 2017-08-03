@@ -12,15 +12,17 @@ namespace Task_2
         static ulong Factorial(ulong a, ulong b)
         {
             ulong n = a;
-            for (ulong i = a; i < b; i++)
+            for (ulong i = a + 1; i <= b; i++)
                 n = n * i;
             return n;
         }
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            StreamReader fs = new StreamReader(@"INPUT.TXT");
-            string[] str = fs.ReadLine().Split(' ');
+            StreamReader fileRead = new StreamReader("input.txt");
+            StreamWriter fileWrite = new StreamWriter("output.txt");
+
+            string[] str = fileRead.ReadLine().Split(' ');
             ulong n = ulong.Parse(str[0]);
             ulong a = ulong.Parse(str[1]);
             ulong b = ulong.Parse(str[2]);
@@ -30,8 +32,10 @@ namespace Task_2
             if (resultA == 0) result = resultB;
             else if (resultB == 0) result = resultA;
             else result = resultA * resultB;
-            Console.WriteLine(result);
-            Console.ReadLine();
+            fileWrite.WriteLine(result);
+
+            fileRead.Close();
+            fileWrite.Close();
         }
     }
 }
